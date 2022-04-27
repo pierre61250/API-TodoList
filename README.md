@@ -15,7 +15,7 @@
 ```bash
 cd ./scripts
 
-./start.sh // Créer et démarre le conteneur
+./start.sh # Créer et démarre le conteneur
 ```
 
 ## Usage
@@ -23,9 +23,9 @@ cd ./scripts
 ```bash
 cd ./scripts
 
-./kill.sh // Supprime le conteneur ainsi que les volumes associés
+./kill.sh # Supprime le conteneur ainsi que les volumes associés
 
-./stop.sh // Stop le conteneur
+./stop.sh # Stop le conteneur
 ```
 
 ## License
