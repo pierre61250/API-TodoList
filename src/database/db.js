@@ -4,12 +4,12 @@ import { colours } from '../library/colors.js';
 export class db {
 
     constructor() {
-        console.log(`[${new Date().toLocaleTimeString()}] [INFO] Connection to db...`);
+        console.log(`${colours.fg.white}[${new Date().toLocaleTimeString()}] [INFO] Connection to db...`);
         this.MongoClient = mongodb.MongoClient;
-        this.url = "mongodb://root:example@127.0.0.1:27017/";
+        this.url = "mongodb://root:example@mongo:27017/";
         this.MongoClient.connect(this.url, function(err, db) {
             if (err) throw err;
-            console.log(`[${new Date().toLocaleTimeString()}] [${colours.fg.green}SUCCESS${colours.fg.white}] Connection to db is OK !!!`);
+            console.log(`${colours.fg.white}[${new Date().toLocaleTimeString()}] [${colours.fg.green}SUCCESS${colours.fg.white}] Connection to db is OK !!!`);
             db.close();
         });
     }

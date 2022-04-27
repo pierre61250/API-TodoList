@@ -1,0 +1,9 @@
+#!/bin/bash
+
+prjName="todolist"
+cmd="docker-compose"
+dcFile="../docker/docker-compose.yml"
+
+set -x
+${cmd} -f ${dcFile} -p ${prjName} $@
+exit $?

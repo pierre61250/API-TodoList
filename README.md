@@ -13,19 +13,19 @@
 ## Installation
 
 ```bash
-cd ./docker
+cd ./scripts
 
-docker compose up
-
-cd  ../
-
-npm install
+./start.sh # Créer et démarre le conteneur
 ```
 
 ## Usage
 
 ```bash
-npm start
+cd ./scripts
+
+./kill.sh # Supprime le conteneur ainsi que les volumes associés
+
+./stop.sh # Stop le conteneur
 ```
 
 ## License
