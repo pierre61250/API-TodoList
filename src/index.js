@@ -36,15 +36,15 @@ app.get('/todolist', (req, res) => {
         database.getTodoList()
         .then(data => {
             res.json(data.map(entry => ({id: entry._id, content: entry.content})));
-            console.log(`[${new Date().toLocaleTimeString()}] [${colours.fg.magenta}GET${colours.fg.white}] [${req.ipInfo.ip.split(":").pop() == 1 ? "127.0.0.1" : req.ipInfo.ip.split(":").pop()}] ${req.url}`);
+            console.log(`${colours.fg.white}[${new Date().toLocaleTimeString()}] [${colours.fg.magenta}GET${colours.fg.white}] [${req.ipInfo.ip.split(":").pop() == 1 ? "127.0.0.1" : req.ipInfo.ip.split(":").pop()}] ${req.url}`);
         })
         .catch(err => {
             res.status(400).json(createError("Erreur lors de la communication avec la base de données"));
-            console.log(`[${new Date().toLocaleTimeString()}] [${colours.fg.magenta}GET${colours.fg.white}/${colours.fg.red}ERROR${colours.fg.white}] [${req.ipInfo.ip.split(":").pop() == 1 ? "127.0.0.1" : req.ipInfo.ip.split(":").pop()}] ${req.url} : ${err.message}`);
+            console.log(`${colours.fg.white}[${new Date().toLocaleTimeString()}] [${colours.fg.magenta}GET${colours.fg.white}/${colours.fg.red}ERROR${colours.fg.white}] [${req.ipInfo.ip.split(":").pop() == 1 ? "127.0.0.1" : req.ipInfo.ip.split(":").pop()}] ${req.url} : ${err.message}`);
         });
     } catch (e) {
         res.status(400).json(createError(e.message));
-        console.log(`[${new Date().toLocaleTimeString()}] [${colours.fg.magenta}GET${colours.fg.white}/${colours.fg.red}ERROR${colours.fg.white}] [${req.ipInfo.ip.split(":").pop() == 1 ? "127.0.0.1" : req.ipInfo.ip.split(":").pop()}] ${req.url} : ${e.message}`);
+        console.log(`${colours.fg.white}[${new Date().toLocaleTimeString()}] [${colours.fg.magenta}GET${colours.fg.white}/${colours.fg.red}ERROR${colours.fg.white}] [${req.ipInfo.ip.split(":").pop() == 1 ? "127.0.0.1" : req.ipInfo.ip.split(":").pop()}] ${req.url} : ${e.message}`);
     }
 });
 
@@ -58,15 +58,15 @@ app.post('/todolist', (req, res) => {
         database.postTodo(todo)
         .then(resp => {
             res.status(201).json(todo);
-            console.log(`[${new Date().toLocaleTimeString()}] [${colours.fg.cyan}POST${colours.fg.white}] [${req.ipInfo.ip.split(":").pop() == 1 ? "127.0.0.1" : req.ipInfo.ip.split(":").pop()}] ${req.url} (_id: ${todo._id})`);
+            console.log(`${colours.fg.white}[${new Date().toLocaleTimeString()}] [${colours.fg.cyan}POST${colours.fg.white}] [${req.ipInfo.ip.split(":").pop() == 1 ? "127.0.0.1" : req.ipInfo.ip.split(":").pop()}] ${req.url} (_id: ${todo._id})`);
         })
         .catch(err => {
             res.status(400).json(createError("Erreur lors de la communication avec la base de données"));
-            console.log(`[${new Date().toLocaleTimeString()}] [${colours.fg.cyan}POST${colours.fg.white}/${colours.fg.red}ERROR${colours.fg.white}] [${req.ipInfo.ip.split(":").pop() == 1 ? "127.0.0.1" : req.ipInfo.ip.split(":").pop()}] ${req.url} : ${err.message}`);
+            console.log(`${colours.fg.white}[${new Date().toLocaleTimeString()}] [${colours.fg.cyan}POST${colours.fg.white}/${colours.fg.red}ERROR${colours.fg.white}] [${req.ipInfo.ip.split(":").pop() == 1 ? "127.0.0.1" : req.ipInfo.ip.split(":").pop()}] ${req.url} : ${err.message}`);
         });
     } catch (e) {
         res.status(400).json(createError(e.message));
-        console.log(`[${new Date().toLocaleTimeString()}] [${colours.fg.cyan}POST${colours.fg.white}/${colours.fg.red}ERROR${colours.fg.white}] [${req.ipInfo.ip.split(":").pop() == 1 ? "127.0.0.1" : req.ipInfo.ip.split(":").pop()}] ${req.url} : ${e.message}`);
+        console.log(`${colours.fg.white}[${new Date().toLocaleTimeString()}] [${colours.fg.cyan}POST${colours.fg.white}/${colours.fg.red}ERROR${colours.fg.white}] [${req.ipInfo.ip.split(":").pop() == 1 ? "127.0.0.1" : req.ipInfo.ip.split(":").pop()}] ${req.url} : ${e.message}`);
     }
 });
 
@@ -77,19 +77,19 @@ app.get('/todolist/:entryId', (req, res) => {
         .then(todo => {
             if (todo.length) {
                 res.json(todo[0]);
-                console.log(`[${new Date().toLocaleTimeString()}] [${colours.fg.magenta}GET${colours.fg.white}] [${req.ipInfo.ip.split(":").pop() == 1 ? "127.0.0.1" : req.ipInfo.ip.split(":").pop()}] ${req.url}`);
+                console.log(`${colours.fg.white}[${new Date().toLocaleTimeString()}] [${colours.fg.magenta}GET${colours.fg.white}] [${req.ipInfo.ip.split(":").pop() == 1 ? "127.0.0.1" : req.ipInfo.ip.split(":").pop()}] ${req.url}`);
             } else {
                 res.status(404).json(createError("Aucun Todo n'est relié à cet id"));
-                console.log(`[${new Date().toLocaleTimeString()}] [${colours.fg.magenta}GET${colours.fg.white}/${colours.fg.red}ERROR${colours.fg.white}] [${req.ipInfo.ip.split(":").pop() == 1 ? "127.0.0.1" : req.ipInfo.ip.split(":").pop()}] ${req.url} : Aucun Todo n'est relié à cet id`);
+                console.log(`${colours.fg.white}[${new Date().toLocaleTimeString()}] [${colours.fg.magenta}GET${colours.fg.white}/${colours.fg.red}ERROR${colours.fg.white}] [${req.ipInfo.ip.split(":").pop() == 1 ? "127.0.0.1" : req.ipInfo.ip.split(":").pop()}] ${req.url} : Aucun Todo n'est relié à cet id`);
             }
         })
         .catch((err) => {
             res.status(400).json(createError("Erreur lors de la communication avec la base de données"));
-            console.log(`[${new Date().toLocaleTimeString()}] [${colours.fg.magenta}GET${colours.fg.white}/${colours.fg.red}ERROR${colours.fg.white}] [${req.ipInfo.ip.split(":").pop() == 1 ? "127.0.0.1" : req.ipInfo.ip.split(":").pop()}] ${req.url} : ${err.message}`);
+            console.log(`${colours.fg.white}[${new Date().toLocaleTimeString()}] [${colours.fg.magenta}GET${colours.fg.white}/${colours.fg.red}ERROR${colours.fg.white}] [${req.ipInfo.ip.split(":").pop() == 1 ? "127.0.0.1" : req.ipInfo.ip.split(":").pop()}] ${req.url} : ${err.message}`);
         });
     } catch (e) {
         res.status(400).json(createError(e.message));
-        console.log(`[${new Date().toLocaleTimeString()}] [${colours.fg.magenta}GET${colours.fg.white}/${colours.fg.red}ERROR${colours.fg.white}] [${req.ipInfo.ip.split(":").pop() == 1 ? "127.0.0.1" : req.ipInfo.ip.split(":").pop()}] ${req.url} : ${e.message}`);
+        console.log(`${colours.fg.white}[${new Date().toLocaleTimeString()}] [${colours.fg.magenta}GET${colours.fg.white}/${colours.fg.red}ERROR${colours.fg.white}] [${req.ipInfo.ip.split(":").pop() == 1 ? "127.0.0.1" : req.ipInfo.ip.split(":").pop()}] ${req.url} : ${e.message}`);
     }
 });
 
@@ -105,19 +105,19 @@ app.put('/todolist/:entryId', (req, res) => {
         .then(response => {
             if (response.matchedCount) {
                 res.json(todoUpdate);
-                console.log(`[${new Date().toLocaleTimeString()}] [${colours.fg.blue}PUT${colours.fg.white}] [${req.ipInfo.ip.split(":").pop() == 1 ? "127.0.0.1" : req.ipInfo.ip.split(":").pop()}] ${req.url}`);
+                console.log(`${colours.fg.white}[${new Date().toLocaleTimeString()}] [${colours.fg.blue}PUT${colours.fg.white}] [${req.ipInfo.ip.split(":").pop() == 1 ? "127.0.0.1" : req.ipInfo.ip.split(":").pop()}] ${req.url}`);
             } else {
                 res.status(404).json(createError("Aucun Todo n'est relié à cet id"));
-                console.log(`[${new Date().toLocaleTimeString()}] [${colours.fg.blue}PUT${colours.fg.white}/${colours.fg.red}ERROR${colours.fg.white}] [${req.ipInfo.ip.split(":").pop() == 1 ? "127.0.0.1" : req.ipInfo.ip.split(":").pop()}] ${req.url} : Aucun Todo n'est relié à cet id`);
+                console.log(`${colours.fg.white}[${new Date().toLocaleTimeString()}] [${colours.fg.blue}PUT${colours.fg.white}/${colours.fg.red}ERROR${colours.fg.white}] [${req.ipInfo.ip.split(":").pop() == 1 ? "127.0.0.1" : req.ipInfo.ip.split(":").pop()}] ${req.url} : Aucun Todo n'est relié à cet id`);
             }
         })
         .catch(err => {
             res.status(400).json(createError("Erreur lors de la communication avec la base de données"));
-            console.log(`[${new Date().toLocaleTimeString()}] [${colours.fg.blue}PUT${colours.fg.white}/${colours.fg.red}ERROR${colours.fg.white}] [${req.ipInfo.ip.split(":").pop() == 1 ? "127.0.0.1" : req.ipInfo.ip.split(":").pop()}] ${req.url} : ${err.message}`);
+            console.log(`${colours.fg.white}[${new Date().toLocaleTimeString()}] [${colours.fg.blue}PUT${colours.fg.white}/${colours.fg.red}ERROR${colours.fg.white}] [${req.ipInfo.ip.split(":").pop() == 1 ? "127.0.0.1" : req.ipInfo.ip.split(":").pop()}] ${req.url} : ${err.message}`);
         });
     } catch (e) {
         res.status(400).json(createError(e.message));
-        console.log(`[${new Date().toLocaleTimeString()}] [${colours.fg.blue}PUT${colours.fg.white}/${colours.fg.red}ERROR${colours.fg.white}] [${req.ipInfo.ip.split(":").pop() == 1 ? "127.0.0.1" : req.ipInfo.ip.split(":").pop()}] ${req.url} : ${e.message}`);
+        console.log(`${colours.fg.white}[${new Date().toLocaleTimeString()}] [${colours.fg.blue}PUT${colours.fg.white}/${colours.fg.red}ERROR${colours.fg.white}] [${req.ipInfo.ip.split(":").pop() == 1 ? "127.0.0.1" : req.ipInfo.ip.split(":").pop()}] ${req.url} : ${e.message}`);
     }
 });
 
@@ -128,22 +128,22 @@ app.delete('/todolist/:entryId', (req, res) => {
         .then(response => {
             if (response.deletedCount == 0) {
                 res.status(404).json(createError("Aucun Todo n'est relié à cet id"));
-                console.log(`[${new Date().toLocaleTimeString()}] [${colours.fg.yellow}DELETE${colours.fg.white}/${colours.fg.red}ERROR${colours.fg.white}] [${req.ipInfo.ip.split(":").pop() == 1 ? "127.0.0.1" : req.ipInfo.ip.split(":").pop()}] ${req.url} : Aucun Todo n'est relié à cet id`);
+                console.log(`${colours.fg.white}[${new Date().toLocaleTimeString()}] [${colours.fg.yellow}DELETE${colours.fg.white}/${colours.fg.red}ERROR${colours.fg.white}] [${req.ipInfo.ip.split(":").pop() == 1 ? "127.0.0.1" : req.ipInfo.ip.split(":").pop()}] ${req.url} : Aucun Todo n'est relié à cet id`);
             } else {
                 res.status(204).end();
-                console.log(`[${new Date().toLocaleTimeString()}] [${colours.fg.yellow}DELETE${colours.fg.white}] [${req.ipInfo.ip.split(":").pop() == 1 ? "127.0.0.1" : req.ipInfo.ip.split(":").pop()}] ${req.url}`);
+                console.log(`${colours.fg.white}[${new Date().toLocaleTimeString()}] [${colours.fg.yellow}DELETE${colours.fg.white}] [${req.ipInfo.ip.split(":").pop() == 1 ? "127.0.0.1" : req.ipInfo.ip.split(":").pop()}] ${req.url}`);
             }
         })
         .catch(err => {
             res.status(400).json(createError("Erreur lors de la communication avec la base de données"));
-            console.log(`[${new Date().toLocaleTimeString()}] [${colours.fg.yellow}DELETE${colours.fg.white}/${colours.fg.red}ERROR${colours.fg.white}] [${req.ipInfo.ip.split(":").pop() == 1 ? "127.0.0.1" : req.ipInfo.ip.split(":").pop()}] ${req.url} : ${err.message}`);
+            console.log(`${colours.fg.white}[${new Date().toLocaleTimeString()}] [${colours.fg.yellow}DELETE${colours.fg.white}/${colours.fg.red}ERROR${colours.fg.white}] [${req.ipInfo.ip.split(":").pop() == 1 ? "127.0.0.1" : req.ipInfo.ip.split(":").pop()}] ${req.url} : ${err.message}`);
         });
     } catch (e) {
         res.status(400).json(createError(e.message));
-        console.log(`[${new Date().toLocaleTimeString()}] [${colours.fg.yellow}DELETE${colours.fg.white}/${colours.fg.red}ERROR${colours.fg.white}] [${req.ipInfo.ip.split(":").pop() == 1 ? "127.0.0.1" : req.ipInfo.ip.split(":").pop()}] ${req.url} : ${e.message}`);
+        console.log(`${colours.fg.white}[${new Date().toLocaleTimeString()}] [${colours.fg.yellow}DELETE${colours.fg.white}/${colours.fg.red}ERROR${colours.fg.white}] [${req.ipInfo.ip.split(":").pop() == 1 ? "127.0.0.1" : req.ipInfo.ip.split(":").pop()}] ${req.url} : ${e.message}`);
     }
 });
 
 app.listen(5000);
 
-console.log(`[${new Date().toLocaleTimeString()}] [INFO] API start on ${colours.fg.blue}http://127.0.0.1:5000${colours.fg.white}`);
+console.log(`${colours.fg.white}[${new Date().toLocaleTimeString()}] [INFO] API start on ${colours.fg.blue}http://127.0.0.1:5000${colours.fg.white}`);

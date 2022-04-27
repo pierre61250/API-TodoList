@@ -2,6 +2,7 @@ version: '3.9'
 
 services:
   mongo:
+    container_name: db
     image: mongo
     restart: always
     ports:
@@ -9,8 +10,10 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
+    tty: true
 
   mongo-express:
+    container_name: db_interface
     image: mongo-express
     restart: always
     ports:
@@ -19,3 +22,17 @@ services:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: example
       ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
+    tty: true
+
+  node:
+    container_name: api
+    image: node:18-alpine
+    volumes:
+      - ../:/var/www/
+      - ../nodemodules:/src/node_modules
+    working_dir: /var/www/
+    ports:
+      - 127.0.0.1:5000:5000
+    restart: always
+    command: sh -c "npm cache clear -f && npm install -f && npm run start"
+    tty: true
